@@ -4,7 +4,6 @@
   "fragments": [
     "src/list-view.html",
     "src/contact-card.html",
-    "src/my-view3.html",
     "src/my-view404.html"
   ],
   "sources": ["src/**/*", "images/**/*"],

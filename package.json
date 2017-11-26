@@ -1,15 +1,24 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "fempire-polymer",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "browser-sync": "^2.18.13",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-html": "^2.0.0"
   },
   "scripts": {
+    "start": "polymer watch & firebase serve",
     "lint": "npm run lint:javascript && polymer lint",
     "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "polymer test",
     "test:integration": "polymer build # test that psk builds without error with the CLI"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "firebase-admin": "^5.5.1",
+    "firebase-functions": "^0.7.3",
+    "twitter": "^1.7.1"
   }
 }

@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<script>
+  class ContactCard extends Polymer.Element {
+    static get is() { return 'contact-card'; }
+    static get properties() {
+      name: Object
+    }
+    static get template() {
+      return `
+        <style>
+          .card {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-center;
+            position: relative;
+            margin: 24px;
+            padding: 16px;
+            color: #333;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+          }
+          .twitter-img {
+            position: absolute;
+            left: 1em;
+            top: 1em;
+          }
+          .name {
+            font-size: 1.4em;
+            line-height: 48px;
+          }
+          img {
+            border-radius: 50%;
+          }
+          a {
+            color: #689f38;
+            text-decoration: none;
+          }
+          .card-content {
+            padding-left: 4em;
+            flex: 1;
+          }
+          .tags {
+            flex: 1;
+            align-content: flex-start;
+          }
+          .chip {
+            display: inline-block;
+            padding: .25em 1em;
+            font-size: 12px;
+            background-color: #bc477b;
+            border-radius: 14px;
+            width: auto;
+            text-align: center;
+            margin: .25em;
+          }
+        </style>
+        <div class="card">
+          <div class="twitter-img">
+            <img src="{{name.twitter_image_url}}" width="48" height="48" />
+          </div>
+          <div class="card-content">
+            <div class="name">{{name.first_name}} {{name.last_name}}</div>
+            <div><a href="https://twitter.com/{{name.twitter_handle}}">@{{name.twitter_handle}}</a></div>
+            <div><a href="{{name.website}}">{{name.website}}</a></div>
+          </div>
+          <div class="tags">
+            <div class="chip">Web components</div>
+            <div class="chip">JavaScript</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+  window.customElements.define(ContactCard.is, ContactCard);
+</script>

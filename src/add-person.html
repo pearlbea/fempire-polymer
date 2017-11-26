@@ -1,0 +1,61 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+
+<script>
+    class AddPerson extends Polymer.Element {
+        static get is() {
+            return 'add-person';
+        }
+        static get properties() {
+            return {
+                first_name: String,
+                last_name: String,
+                twitter_handle: String,
+                website: String
+            }
+        }
+        static get template() {
+            return `
+            <style>
+                #add-person {
+                    margin: 1em 2em;
+                }
+            </style>
+            <div id="add-person">
+                <label slot="label" for="first_name">First Name</label>
+                <paper-input slot="input" value="{{first_name::input}}">
+                    <input name="first_name" id="first_name" >
+                </paper-input>
+                <label for="last_name" slot="label">Last Name</label>
+                <paper-input slot="input" value="{{last_name::input}}">
+                    <input name="last_name" id="last_name">
+                </paper-input>
+                <label for="twitter_handle" slot="label">Twitter Handle</label>
+                <paper-input slot="input" value="{{twitter_handle::input}}">
+                    <input name="last_name" id="twitter_handle">
+                </paper-input>
+                <label for="website" slot="label">Website</label>
+                <paper-input slot="input" value="{{website::input}}">
+                    <input name="last_name" id="website">
+                </paper-input>
+                
+                <paper-button on-click="_addPerson">Submit</paper-button>
+            </div>`;
+        }
+        _addPerson() {
+            console.log('what?')
+            console.log(this.first_name, this.last_name, this.twitter_handle, this.website)
+            let db = firebase.database().ref('directory');
+            db.push({
+                first_name: this.first_name,
+                last_name: this.last_name,
+                twitter_handle: this.twitter_handle,
+                website: this.website
+            });
+        }
+
+    }
+    window.customElements.define(AddPerson.is, AddPerson);
+</script>

@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="contact-card.html">
+
+<script>
+  class ListView extends Polymer.Element {
+    static get is() {
+      return 'list-view';
+    }
+    static get properties() {
+      names: Array
+    }
+    static get template() {
+      return `
+      <style>
+        :host {
+          display: flex;
+        }
+      </style>
+      <div id="list-view">
+        <template is="dom-repeat" items="{{names}}">
+          <contact-card name="{{item}}"></contact-card>
+        </template>
+      </div>
+      `;
+    }
+    notEmpty(item) {
+      return item;
+    }
+  }
+  window.customElements.define(ListView.is, ListView);
+</script>

@@ -1,16 +1,13 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/app-shell.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
+    "src/list-view.html",
+    "src/contact-card.html",
     "src/my-view3.html",
     "src/my-view404.html"
   ],
-  "sources": [
-    "src/**/*",
-    "images/**/*"
-  ],
+  "sources": ["src/**/*", "images/**/*"],
   "extraDependencies": [
     "manifest.json",
     "bower_components/webcomponentsjs/*.js"

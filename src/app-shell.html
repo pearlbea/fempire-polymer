@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+<link rel="import" href="list-view.html">
+<link rel="import" href="add-person.html">
+
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script>
+  firebase.initializeApp({
+    apiKey: 'AIzaSyDuXGiGQ-H-igOBfmFQLiiBduRn5iVbnGU',
+    authDomain: 'fempire-polymer.firebase.com',
+    databaseURL: 'https://fempire-polymer.firebaseio.com/',
+    projectId: 'fempire-polymer'
+  });
+
+  class AppShell extends Polymer.Element {
+    static get is() {
+      return 'app-shell';
+    }
+    ready() {
+      super.ready();
+      this._getNames();
+    }
+    static get firebase() {
+      return firebase;
+    }
+    static get properties() {
+      names: []
+      query: {
+        type: String
+      }
+    }
+    static get template() {
+      return `
+          <style>
+            :host {
+              --app-primary-color: #880e4f;
+              --app-secondary-color: #366f00;
+              background-color: ##e5ffff;
+            }
+            app-header {
+              color: #fff;
+              background-color: var(--app-primary-color);
+            }
+            paper-search-bar {
+              color: #000;
+            }
+          </style>
+          <app-header-layout>
+            <app-header slot="header">
+              <app-toolbar>
+                <div main-title>Fempire</div>
+              </app-toolbar>
+            </app-header>
+            <list-view names="{{names}}"></list-view>
+            <add-person></add-person>
+          </app-header-layout>
+      `;
+    }
+    _getNames() {
+      let db = firebase.database();
+      let ref = db.ref('directory');
+      let arr = [];
+      ref.once('value')
+        .then(snapshot => {
+          snapshot.forEach(child => {
+            let item = child.val();
+            item.key = child.key;
+            arr.push(item);
+          });
+          this.names = arr;
+        });
+    }
+  }
+  window.customElements.define(AppShell.is, AppShell);
+</script>

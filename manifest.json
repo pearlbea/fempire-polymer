@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Fempire",
+  "short_name": "Fempire",
+  "description": "A list of women tech speakers and organizers",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",

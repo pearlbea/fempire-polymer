@@ -45,8 +45,6 @@
             </div>`;
         }
         _addPerson() {
-            console.log('what?')
-            console.log(this.first_name, this.last_name, this.twitter_handle, this.website)
             let db = firebase.database().ref('directory');
             db.push({
                 first_name: this.first_name,
